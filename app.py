@@ -5,13 +5,16 @@ import pandas as pd
 from bokeh.plotting import figure, show, save
 from bokeh.io import output_file
 from bokeh.models import ColumnDataSource
-from bokeh.embed import autoload_static
-from bokeh.resources import CDN
 
 app = Flask(__name__)
 
 app.vars={}
 
+@app.route('/')
+def start():
+    return redirect('/index')
+    
+    
 @app.route('/index',methods=['GET','POST'])
 def index():
     if request.method == 'GET':
@@ -43,11 +46,7 @@ def index():
         source = ColumnDataSource(data=df)
         p = figure(title= this_ticker + " closing price in the last month", x_axis_label='Date', y_axis_label='Closing Price', x_axis_type="datetime")
         p.line(x = 'Date', y = 'Close', source = source, legend = this_ticker, line_width = 2)
-#        js, tag = autoload_static(p, CDN, "templates/bokehgraph.js")
-#
-#        f = open('templates/bokehgraph.js','w')
-#        f.write(js)
-#        f.close()
+
         output_file("templates/graph.html")
         save(p)
                 
