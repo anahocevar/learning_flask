@@ -33,7 +33,7 @@ def index():
         my_Quandl_key = os.environ.get('QUANDL_KEY', None)
 
         #Get Data from www.quandl.com
-        r = requests.get('https://www.quandl.com/api/v3/datasets/WIKI/{0}.json?column_index=4&start_date={1}&end_date={2}&api_key=my_Quandl_key'.format(this_ticker,first_day,today))
+        r = requests.get('https://www.quandl.com/api/v3/datasets/WIKI/{0}.json?column_index=4&start_date={1}&end_date={2}&api_key={3}'.format(this_ticker,first_day,today,my_Quandl_key))
         
         if r.status_code == 403:
             return ("You do not have permission to view this stock ticker. Please subscribe to this ticker to get access.")
