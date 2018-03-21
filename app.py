@@ -30,7 +30,7 @@ def index():
         first_day = then.strftime("%Y-%m-%d")
 
         #Get Data from www.quandl.com
-        r = requests.get('https://www.quandl.com/api/v3/datasets/EOD/{0}.json?column_index=4&start_date={1}&end_date={2}&api_key=zRAuGY8-NoKwgZWbTa_a'.format(this_ticker,first_day,today))
+        r = requests.get('https://www.quandl.com/api/v3/datasets/WIKI/{0}.json?column_index=4&start_date={1}&end_date={2}&api_key=zRAuGY8-NoKwgZWbTa_a'.format(this_ticker,first_day,today))
         
         if r.status_code == 403:
             return ("You do not have permission to view this stock ticker. Please subscribe to this ticker to get access.")
