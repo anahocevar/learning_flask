@@ -44,7 +44,6 @@ def index():
         df = pd.DataFrame(data[u'dataset'][u'data'])
         df.columns = data[u'dataset'][u'column_names']
         df['Date'] = pd.to_datetime(df['Date'], format='%Y/%m/%d')
-        stock_name = data[u'dataset'][u'name'][:-44]
         
         #Bokeh
         source = ColumnDataSource(data=df)
@@ -54,7 +53,9 @@ def index():
                 
         script, div = components(p)
 
-        return render_template("mygraph.html", title="Stock Ticker Plot", the_div=div, the_script=script, stock_name = stock_name)        
+        stock_name = data[u'dataset'][u'name'][:-44]
+        google_link = "[&nbsp;<a target=”_blank” href=”http://www.google.com/search?q="+ this_ticker +"”>Google Search"+ this_ticker +"</a>&nbsp;]"
+        return render_template("mygraph.html", title="Stock Ticker Plot", the_div=div, the_script=script, stock_name = stock_name, google_link = google_link)        
 
 
 @app.route('/about')
