@@ -53,8 +53,8 @@ def index():
                 
         script, div = components(p)
 
-#        return render_template("graph.html", the_div=div, the_script=script)        
-        return redirect(url_for('graph', the_div=div, the_script=script))
+        return render_template("graph.html", the_div=div, the_script=script)        
+#        return redirect(url_for('graph', the_div=div, the_script=script))
 
 
 @app.route('/about')
