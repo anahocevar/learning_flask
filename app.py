@@ -47,6 +47,7 @@ def index():
         source = ColumnDataSource(data=df)
         p = figure(title= this_ticker + " closing price in the last month", x_axis_label='Date', y_axis_label='Closing Price', x_axis_type="datetime", plot_width=600, plot_height=400)
         p.line(x = 'Date', y = 'Close', source = source, legend = this_ticker, line_width = 2)
+        p.circle(x = 'Date', y = 'Close', source = source, legend = this_ticker)
 
 #        output_file("templates/graph.html")
 #        save(p)
