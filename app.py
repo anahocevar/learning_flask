@@ -54,7 +54,7 @@ def index():
         script, div = components(p)
 
         stock_name = data[u'dataset'][u'name'][:-44]
-        google_link = "[&nbsp;<a target=\"_blank\" href=\"http://www.google.com/search?q="+this_ticker+"\"> Google Search this_ticker</a>&nbsp;]"
+        google_link = "[&nbsp;<a href=\"http://www.google.com/search?q="+this_ticker+"\"> Google Search \'"+this_ticker+"\'</a>&nbsp;]"
         return render_template("mygraph.html", title="Stock Ticker Plot", the_div=div, the_script=script, stock_name = stock_name, google_link = google_link)        
 
 
