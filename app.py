@@ -44,30 +44,22 @@ def index():
         df = pd.DataFrame(data[u'dataset'][u'data'])
         df.columns = data[u'dataset'][u'column_names']
         df['Date'] = pd.to_datetime(df['Date'], format='%Y/%m/%d')
+        stock_name = data[u'dataset'][u'name'][:-44]
         
         #Bokeh
         source = ColumnDataSource(data=df)
         p = figure(title= this_ticker + " closing price in the last month", x_axis_label='Date', y_axis_label='Closing Price', x_axis_type="datetime", plot_width=600, plot_height=400)
         p.line(x = 'Date', y = 'Close', source = source, legend = this_ticker, line_width = 2, color="maroon")
         p.circle(x = 'Date', y = 'Close', source = source, legend = this_ticker, color="maroon",size=8, alpha=0.5)
-
-#        output_file("templates/graph.html")
-#        save(p)
                 
         script, div = components(p)
 
-        return render_template("mygraph.html", title="Stock Ticker Plot", the_div=div, the_script=script)        
-#        return redirect(url_for('graph', the_div=div, the_script=script))
+        return render_template("mygraph.html", title="Stock Ticker Plot", the_div=div, the_script=script, stock_name = stock_name)        
 
 
 @app.route('/about')
 def about():
     return render_template('myabout.html', title="About")
-
-
-#@app.route('/graph')
-#def graph():
-#    return render_template('graph.html', the_script=request.args.get('the_script'), the_div=request.args.get('the_div'))
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
