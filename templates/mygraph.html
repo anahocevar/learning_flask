@@ -1,0 +1,18 @@
+{% from "macros.html" import nav_link with context %}
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.13.min.css" type="text/css">
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.13.min.js"></script>
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.13.min.js"></script>
+    {{ the_script|safe }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  {{ the_div|safe }}
+{% endblock %}

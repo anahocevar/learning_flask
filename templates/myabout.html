@@ -1,0 +1,20 @@
+{% from "macros.html" import nav_link with context %}
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <h3>About</h3>
+      <br>
+  <p>This is a simple web app which takes a stock ticker and plots its closing price for the past month.
+      <br>
+  </p>
+{% endblock %}
+
+
+

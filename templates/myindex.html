@@ -1,0 +1,28 @@
+{% from "macros.html" import nav_link with context %}
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block page %}{{title}}{% endblock %}
+{% block heading %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <h3>Welcome!</h3>  
+  <h4>Type in the stock ticker you are interested in and get a plot of End Of Day price for the past month.</h4>
+  <form id='userform' method='post' action='index' >
+        <p>
+            <br>
+        </p> 
+        <p>
+            Stock Ticker: <input type='text' name='this_ticker' />
+        </p>
+        <p>
+            <br>
+        </p>
+        <p>    
+            <input type='submit' value='Submit' />
+        </p>
+   </form>
+{% endblock %}
