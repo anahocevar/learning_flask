@@ -30,7 +30,7 @@ def index():
         then = now - timedelta(days=31)
         first_day = then.strftime("%Y-%m-%d")
         
-        my_Quandl_key = os.environ.get('QuandlKey', None)
+        my_Quandl_key = os.environ.get('QUANDL_KEY', None)
 
         #Get Data from www.quandl.com
         r = requests.get('https://www.quandl.com/api/v3/datasets/WIKI/{0}.json?column_index=4&start_date={1}&end_date={2}&api_key=my_Quandl_key'.format(this_ticker,first_day,today))
