@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime, timedelta
 import requests
 import pandas as pd
 from bokeh.plotting import figure, show, save
 from bokeh.io import output_file
 from bokeh.models import ColumnDataSource
+from bokeh.embed import components
 
 app = Flask(__name__)
 
@@ -47,10 +48,14 @@ def index():
         p = figure(title= this_ticker + " closing price in the last month", x_axis_label='Date', y_axis_label='Closing Price', x_axis_type="datetime")
         p.line(x = 'Date', y = 'Close', source = source, legend = this_ticker, line_width = 2)
 
-        output_file("templates/graph.html")
-        save(p)
+#        output_file("templates/graph.html")
+#        save(p)
                 
-        return redirect('/graph')
+        script, div = components(p)
+
+#        return render_template("graph.html", the_div=div, the_script=script)        
+        return redirect(url_for('graph', the_div=div, the_script=script))
+
 
 @app.route('/about')
 def about():
@@ -58,7 +63,7 @@ def about():
 
 @app.route('/graph')
 def graph():
-    return render_template('graph.html')
+    return render_template('graph.html', the_script=request.args.get('the_script'), the_div=request.args.get('the_div'))
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
